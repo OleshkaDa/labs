@@ -4,52 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-using System;
-
 namespace tp_lab3
 {
-    interface IRook
-    {
-        void Show();
-    }
+    interface IRook { void Show(); }
+    interface IBishop { void Show(); }
 
-    interface IBishop
-    {
-        void Show();
-    }
-
-    class WhiteRook : IRook
-    {
-        public void Show()
-        {
-            Console.WriteLine("Белая ладья");
-        }
-    }
-
-    class BlackRook : IRook
-    {
-        public void Show()
-        {
-            Console.WriteLine("Чёрная ладья");
-        }
-    }
-
-    class WhiteBishop : IBishop
-    {
-        public void Show()
-        {
-            Console.WriteLine("Белый слон");
-        }
-    }
-
-    class BlackBishop : IBishop
-    {
-        public void Show()
-        {
-            Console.WriteLine("Чёрный слон");
-        }
-    }
+    class WhiteRook : IRook { public void Show() => Console.WriteLine("Белая ладья"); }
+    class BlackRook : IRook { public void Show() => Console.WriteLine("Чёрная ладья"); }
+    class WhiteBishop : IBishop { public void Show() => Console.WriteLine("Белый слон"); }
+    class BlackBishop : IBishop { public void Show() => Console.WriteLine("Чёрный слон"); }
 
     interface AbstractFactory
     {
@@ -59,27 +22,13 @@ namespace tp_lab3
 
     class WhiteFactory : AbstractFactory
     {
-        public IRook CreateRook()
-        {
-            return new WhiteRook();
-        }
-
-        public IBishop CreateBishop()
-        {
-            return new WhiteBishop();
-        }
+        public IRook CreateRook() => new WhiteRook();
+        public IBishop CreateBishop() => new WhiteBishop();
     }
 
     class BlackFactory : AbstractFactory
     {
-        public IRook CreateRook()
-        {
-            return new BlackRook();
-        }
-
-        public IBishop CreateBishop()
-        {
-            return new BlackBishop();
-        }
+        public IRook CreateRook() => new BlackRook();
+        public IBishop CreateBishop() => new BlackBishop();
     }
 }

@@ -4,12 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-using System;
-
 namespace tp_lab3
 {
-    // Объект, который создаём
     class ChessGame
     {
         public string PlayerName;
@@ -18,13 +14,12 @@ namespace tp_lab3
 
         public void Show()
         {
-            Console.WriteLine("Игрок: " + PlayerName);
-            Console.WriteLine("Время: " + TimeMinutes + " минут");
-            Console.WriteLine("Цвет: " + Color);
+            Console.WriteLine($"Игрок: {PlayerName}");
+            Console.WriteLine($"Время: {TimeMinutes} минут");
+            Console.WriteLine($"Цвет: {Color}");
         }
     }
 
-    // Интерфейс строителя
     interface IChessGameBuilder
     {
         void BuildPlayer();
@@ -33,33 +28,16 @@ namespace tp_lab3
         ChessGame GetResult();
     }
 
-    // Конкретный строитель
     class ChessGameBuilder : IChessGameBuilder
     {
         private ChessGame game = new ChessGame();
 
-        public void BuildPlayer()
-        {
-            game.PlayerName = "Зубенко Михаил Петрович";
-        }
-
-        public void BuildTime()
-        {
-            game.TimeMinutes = 10;
-        }
-
-        public void BuildColor()
-        {
-            game.Color = "Белые";
-        }
-
-        public ChessGame GetResult()
-        {
-            return game;
-        }
+        public void BuildPlayer() => game.PlayerName = "Зубенко Михаил Петрович";
+        public void BuildTime() => game.TimeMinutes = 10;
+        public void BuildColor() => game.Color = "Белые";
+        public ChessGame GetResult() => game;
     }
 
-    // Директор
     class Director
     {
         public void Construct(IChessGameBuilder builder)
@@ -70,4 +48,3 @@ namespace tp_lab3
         }
     }
 }
-
