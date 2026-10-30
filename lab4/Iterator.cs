@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace tp_lab4
 {
     interface IChessIterator
@@ -11,14 +12,29 @@ namespace tp_lab4
         string Next();
     }
 
-    class MoveHistory : IChessIterator
+    class MoveHistory
     {
-        private string[] moves;
+        private readonly string[] moves;
+
+        public MoveHistory(string[] moves)
+        {
+            this.moves = moves;
+        }
+
+        public IChessIterator CreateIterator()
+        {
+            return new MoveHistoryIterator(moves);
+        }
+    }
+
+    class MoveHistoryIterator : IChessIterator
+    {
+        private readonly string[] moves;
         private int position = 0;
 
-        public void SetMoves(string[] newMoves)
+        public MoveHistoryIterator(string[] moves)
         {
-            moves = newMoves;
+            this.moves = moves;
         }
 
         public bool HasNext()
@@ -28,6 +44,8 @@ namespace tp_lab4
 
         public string Next()
         {
+            if (!HasNext())
+                throw new IndexOutOfRangeException("Больше ходов нет.");
             return moves[position++];
         }
     }
